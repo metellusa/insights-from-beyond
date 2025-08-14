@@ -103,7 +103,7 @@ function Hero() {
           {/* Book cover frame */}
           <div className="mx-auto w-72 md:w-80 aspect-[2/3] rounded-xl ring-2 ring-white/10 shadow-2xl shadow-cyan-500/20 bg-gradient-to-b from-black via-[#0A2A5E] to-[#00111f] flex items-center justify-center">
             {/* If you deploy, replace this placeholder with the real image src below */}
-            <img src="/images/Insights_from_Beyond_High_Res_Cover.webp" alt="Insights from Beyond book cover" className="w-full h-full object-cover rounded-xl"/>
+            <img src="/images/insights-from-beyond-book-cover.webp" alt="Insights from Beyond book cover" className="w-full h-full object-cover rounded-xl"/>
           </div>
           <div className="absolute -bottom-6 -left-6 h-24 w-24 blur-2xl bg-cyan-400/30 rounded-full"/>
           <div className="absolute -top-8 -right-10 h-24 w-24 blur-2xl bg-blue-300/20 rounded-full"/>
@@ -206,7 +206,6 @@ function Endorsements() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">Early Praise</h2>
-          <span className="text-xs text-white/60">(Add blurbs from endorsers as they arrive)</span>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {[
@@ -308,13 +307,13 @@ function AboutPage() {
         <div className="md:col-span-2">
           <h1 className="text-3xl font-bold mb-3">About Anaja Metellus</h1>
           <p className="text-white/90 leading-relaxed">
-            Anaja Metellus is a software engineer and lifelong seeker who writes at the intersection of scripture, science, and spiritual experience. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies—accounts that didn’t pull him away from faith but invited him to engage it more deeply and honestly.
+            Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who writes at the intersection of science, scripture, and spiritual experience. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies—accounts that didn’t pull him away from faith but invited him to engage it more deeply and honestly.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
-            Professionally, Anaja has built backend systems and APIs for several large and midsize companies. Personally, he brings the same curiosity and rigor to questions of meaning. <span className="italic">Insights from Beyond</span> is the result of years spent reading research, interviewing experiencers, and weighing NDE insights alongside the Bible. The book aims to bridge science and spirituality with humility: not to replace doctrine, but to kindle love, courage, and a truer picture of God’s heart.
+            Professionally, Anaja builds backend systems and APIs. Personally, he brings the same curiosity and rigor to questions of meaning. <span className="italic">Insights from Beyond</span> is the result of years spent reading research, interviewing experiencers, and weighing NDE insights alongside the Bible. The book aims to bridge science and spirituality with humility: not to replace doctrine, but to kindle love, courage, and a truer picture of God’s heart.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
-            Anaja lives in Orlando, Florida with his family. He enjoys quality time with family, listening to great music, having conversations about theology and consciousness, and the simple practices that keep a soul healthy—prayer, good company, and staying active.
+            Anaja lives in Orlando, Florida with his family. He enjoys quality time with family, listening to great music, having conversations about theology and consciousness, and an occasional glass of red wine. He also enjoys the simple practices that keep a soul healthy: modeling Jesus, prayer, good company, and staying active.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">Pre‑order the book</a>
@@ -322,15 +321,71 @@ function AboutPage() {
           </div>
         </div>
         <div>
-          <div className="relative w-full aspect-square rounded-3xl ring-2 ring-white/10 overflow-hidden bg-gradient-to-br from-[#00111f] to-[#0A2A5E] flex items-center justify-center">
-            <img src="/images/book-picture.webp" alt="Anaja Metellus" className="w-full h-full object-cover"/>
-            {<img src="/images/author.webp" alt="Anaja Metellus" className="w-full h-full object-cover"/>}
-            <span className="text-white/70">Author photo</span>
-          </div>
-          <p className="text-xs text-white/60 mt-2">(Drop your real photo in /images and update srcs before going live.)</p>
+          <RotatingGallery />
+          <p className="text-xs text-white/60 mt-2">About Anaja Metellus, Insights from Beyond author</p>
         </div>
       </div>
     </main>
+  );
+}
+
+function RotatingGallery() {
+  const slides = [
+    { src: "/images/anaja-metellus.webp", alt: "Anaja Metellus, author of Insights from Beyond" },
+    { src: "/images/anaja-metellus-2.webp", alt: "Anaja Metellus, author of Insights from Beyond" },
+    { src: "/images/anaja-metellus-looking-beyond.webp", alt: "Anaja Metellus, author of Insights from Beyond" },
+    { src: "/images/anaja-metellus-looking-at-book.webp", alt: "Anaja Metellus, author of Insights from Beyond" },
+    { src: "/images/insights-from-beyond-book-and-anaja-metellus.webp", alt: "Insights from Beyond book with Anaja Metellus" },
+    { src: "/images/insights-from-beyond-dedication-page.webp", alt: "Insights from Beyond dedication page" },
+    { src: "/images/insights-from-beyond-on-table.webp", alt: "Insights from Beyond book on table" }
+  ];
+  const [i, setI] = React.useState(0);
+
+  // Rotate every 7s
+  React.useEffect(() => {
+    const id = setInterval(() => setI((v) => (v + 1) % slides.length), 7000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Preload next image for smoothness
+  React.useEffect(() => {
+    const img = new Image();
+    img.src = slides[(i + 1) % slides.length].src;
+  }, [i]);
+
+  return (
+    <div className="relative w-full aspect-square rounded-3xl ring-2 ring-white/10 overflow-hidden bg-gradient-to-br from-[#00111f] to-[#0A2A5E]">
+      {slides.map((s, idx) => (
+        <img
+          key={s.src}
+          src={s.src}
+          alt={s.alt}
+          loading={idx === 0 ? "eager" : "lazy"}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${idx === i ? 'opacity-100' : 'opacity-0'}`}
+        />
+      ))}
+      <div className="absolute bottom-3 right-3 flex gap-1" aria-hidden>
+        {slides.map((_, idx) => (
+          <span key={idx} className={`h-1.5 w-6 rounded-full ${idx === i ? 'bg-white/80' : 'bg-white/30'}`}></span>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/50 border border-white/10"
+        onClick={() => setI((i - 1 + slides.length) % slides.length)}
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/50 border border-white/10"
+        onClick={() => setI((i + 1) % slides.length)}
+        aria-label="Next image"
+      >
+        ›
+      </button>
+    </div>
   );
 }
 
