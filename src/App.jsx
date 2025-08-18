@@ -7,6 +7,17 @@ import React, { useEffect, useMemo, useState } from "react";
 // Sunrise blue: #A8D0FF
 // Soft white: #F8FAFC
 
+// Parse ?query params that come after the hash, e.g. #/thank-you?name=Anaja
+function getHashQueryParam(key) {
+  if (typeof window === 'undefined') return null;
+  const hash = window.location.hash || '';
+  const qIndex = hash.indexOf('?');
+  if (qIndex === -1) return null;
+  const params = new URLSearchParams(hash.slice(qIndex + 1));
+  const val = params.get(key);
+  return val ? val.trim() : null;
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[#0B1B2B] text-white">
@@ -33,7 +44,7 @@ function SiteNav() {
           <a className="px-4 py-2 rounded-xl bg-[#00B3FF] hover:bg-[#36c7ff] text-[#0B1B2B] font-semibold shadow-lg" href="#/preorder">Pre‑order</a>
         </nav>
         <button className="md:hidden p-2 rounded-lg border border-white/10" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg>
         </button>
       </div>
       {open && (
@@ -58,10 +69,11 @@ function MainRouter() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  if (hash.startsWith('#/about')) return <AboutPage/>;
-  if (hash.startsWith('#/contact')) return <ContactPage/>;
-  if (hash.startsWith('#/preorder')) return <PreorderPage/>;
-  return <HomePage/>;
+  if (hash.startsWith('#/about')) return <AboutPage />;
+  if (hash.startsWith('#/contact')) return <ContactPage />;
+  if (hash.startsWith('#/preorder')) return <PreorderPage />;
+  if (hash.startsWith('#/thank-you')) return <ThankYouPage />;
+  return <HomePage />;
 }
 
 // ---------------- PAGES ----------------
@@ -81,7 +93,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* backdrop */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0A2A5E] via-[#0B1B2B] to-black"/>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0A2A5E] via-[#0B1B2B] to-black" />
       <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <p className="text-[#A8D0FF] uppercase tracking-widest text-xs mb-3">Official Launch · September 26</p>
@@ -103,10 +115,10 @@ function Hero() {
           {/* Book cover frame */}
           <div className="mx-auto w-72 md:w-80 aspect-[2/3] rounded-xl ring-2 ring-white/10 shadow-2xl shadow-cyan-500/20 bg-gradient-to-b from-black via-[#0A2A5E] to-[#00111f] flex items-center justify-center">
             {/* If you deploy, replace this placeholder with the real image src below */}
-            <img src="/images/insights-from-beyond-book-cover.webp" alt="Insights from Beyond book cover" className="w-full h-full object-cover rounded-xl"/>
+            <img src="/images/insights-from-beyond-book-cover.webp" alt="Insights from Beyond book cover" className="w-full h-full object-cover rounded-xl" />
           </div>
-          <div className="absolute -bottom-6 -left-6 h-24 w-24 blur-2xl bg-cyan-400/30 rounded-full"/>
-          <div className="absolute -top-8 -right-10 h-24 w-24 blur-2xl bg-blue-300/20 rounded-full"/>
+          <div className="absolute -bottom-6 -left-6 h-24 w-24 blur-2xl bg-cyan-400/30 rounded-full" />
+          <div className="absolute -top-8 -right-10 h-24 w-24 blur-2xl bg-blue-300/20 rounded-full" />
         </div>
       </div>
     </section>
@@ -130,9 +142,9 @@ function Countdown({ targetDate }) {
   }, [diff]);
   return (
     <div className="grid grid-flow-col gap-4 text-center auto-cols-max">
-      {Object.entries(parts).map(([k,v]) => (
+      {Object.entries(parts).map(([k, v]) => (
         <div key={k} className="px-4 py-2 rounded-xl border border-white/10 bg-white/[.03]">
-          <div className="text-2xl font-bold tabular-nums">{String(v).padStart(2,'0')}</div>
+          <div className="text-2xl font-bold tabular-nums">{String(v).padStart(2, '0')}</div>
           <div className="text-xs uppercase tracking-widest text-white/70">{k}</div>
         </div>
       ))}
@@ -149,7 +161,7 @@ function ValueProps() {
           In <span className="italic">Insights from Beyond</span>, Anaja Metellus invites readers on a personal and spiritually rich journey born out of grief and a longing to see his long‑held beliefs come to life. After losing his grandmother and two young cousins, he found himself consumed by questions about mortality and the meaning of life. A late‑night YouTube search led him into the world of near‑death experiences (NDEs). These testimonies would go on to profoundly shift his understanding of life, death, and God.
         </p>
         <p className="text-white/90 leading-relaxed mt-4">
-          Raised within Evangelical Christianity, Anaja began to see his inherited worldview through fresh eyes. NDEs didn’t pull him away from his faith—but they did prompt him to examine it objectively. With honesty and reverence, he explores foundational truths through biblical reflection and scientific research. Questions of origin, identity, purpose, and destiny unfold in ways that invite every reader to reconsider what they believe and why.
+          Raised within Evangelical Christianity, Anaja began to see his inherited worldview through fresh eyes. NDEs didn’t pull him away from his faith—but they did prompt him to examine it objectively. With honesty and reverence, he explores foundational truths through biblical reflection and scientific research. Questions of origin, identity, purpose, and destiny unfold in ways that invite every reader, regardless of religion, to reconsider what they believe and why.
         </p>
         <p className="text-white/90 leading-relaxed mt-4">
           To Anaja, NDEs aren’t hallucinations but spiritual breadcrumbs—God’s way of whispering to us through the veil. In an age where religion can feel divisive or shallow, this book offers something deeper. Whether you’re a believer, seeker, or curious skeptic, you’re invited to explore the mystery. You may find that God isn’t offended by your search. In fact, He may have been waiting for you to begin it.
@@ -189,7 +201,7 @@ function InsideTheBook() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {bullets.map((b, i) => (
             <div key={i} className="p-6 rounded-2xl border border-white/10 bg-white/[.03]">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#00B3FF] to-[#A8D0FF] mb-4"/>
+              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#00B3FF] to-[#A8D0FF] mb-4" />
               <div className="font-semibold mb-2">{b.title}</div>
               <p className="text-white/80 text-sm leading-relaxed">{b.text}</p>
             </div>
@@ -226,7 +238,7 @@ function Endorsements() {
             }
           ].map((e, i) => (
             <figure key={i} className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="#00B3FF"><path d="M7 7h4v10H5V9l2-2zm10 0h4v10h-6V9l2-2z"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#00B3FF"><path d="M7 7h4v10H5V9l2-2zm10 0h4v10h-6V9l2-2z" /></svg>
               <blockquote className="mt-3 text-white/90">{e.quote}</blockquote>
               <figcaption className="mt-4 text-sm text-white/70">— {e.name}{e.title && `, ${e.title}`}</figcaption>
             </figure>
@@ -285,15 +297,15 @@ function NotifyForm() {
   // --- Mailchimp embed (replace with your actual form action URL) ---
   // Find this in Mailchimp: Audience > Signup forms > Embedded forms.
   // Example format: https://YOUR_DC.list-manage.com/subscribe/post?u=XXXXXXX&id=YYYYYYY
-  const MAILCHIMP_URL = "https://YOUR_DC.list-manage.com/subscribe/post?u=YOUR_U&id=YOUR_ID";
+  const MAILCHIMP_URL = "https://submit.jotform.com/submit/252258295013051";
   return (
     <form className="mt-4" action={MAILCHIMP_URL} method="post" target="_blank" noValidate>
       {/* honeypot to reduce bots (Mailchimp expects this name) */}
-      <div style={{position:'absolute', left:'-5000px'}} aria-hidden="true">
+      <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
         <input type="text" name="b_YOUR_U_YOUR_ID" tabIndex={-1} defaultValue="" />
       </div>
       <div className="flex gap-3">
-        <input name="EMAIL" required type="email" placeholder="you@example.com" className="flex-1 px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"/>
+        <input name="EMAIL" required type="email" placeholder="you@example.com" className="flex-1 px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]" />
         <button className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold" type="submit">Notify me</button>
       </div>
     </form>
@@ -307,7 +319,7 @@ function AboutPage() {
         <div className="md:col-span-2">
           <h1 className="text-3xl font-bold mb-3">About Anaja Metellus</h1>
           <p className="text-white/90 leading-relaxed">
-            Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who writes at the intersection of science, scripture, and spiritual experience. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies—accounts that didn’t pull him away from faith but invited him to engage it more deeply and honestly.
+            Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who is fascinated by the intersection of science, scripture, and spiritual experience. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies—accounts that didn’t pull him away from faith but invited him to engage it more deeply and honestly.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
             Professionally, Anaja builds backend systems and APIs. Personally, he brings the same curiosity and rigor to questions of meaning. <span className="italic">Insights from Beyond</span> is the result of years spent reading research, interviewing experiencers, and weighing NDE insights alongside the Bible. The book aims to bridge science and spirituality with humility: not to replace doctrine, but to kindle love, courage, and a truer picture of God’s heart.
@@ -328,6 +340,129 @@ function AboutPage() {
     </main>
   );
 }
+
+function ThankYouPage() {
+  // Optional personalization from Jotform: set redirect to ...#/thank-you?name={name:first}
+  const [firstName, setFirstName] = useState(null);
+
+  useEffect(() => {
+    // read from hash query (e.g. #/thank-you?name=Anaja)
+    const nameRaw = getHashQueryParam('name');
+    if (nameRaw) setFirstName(nameRaw.split(' ')[0]);
+  }, []);
+
+  // If someone hits this URL directly, you can optionally nudge them back:
+  // useEffect(() => {
+  //   if (!getHashQueryParam('name')) {
+  //     const t = setTimeout(() => (window.location.hash = '#/contact'), 6000);
+  //     return () => clearTimeout(t);
+  //   }
+  // }, []);
+
+  return (
+    <main className="max-w-5xl mx-auto px-4 py-20">
+      {/* Header row */}
+      <div className="flex items-start gap-4">
+        <div className="h-12 w-12 rounded-full bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" className="text-emerald-400">
+            <path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+          </svg>
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold">
+            Thank you{firstName ? `, ${firstName}` : ''}!
+          </h1>
+          <p className="mt-2 text-white/80">
+            Your message is in. I usually reply within 24–48 hours.
+          </p>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="mt-10 grid md:grid-cols-3 gap-8">
+        {/* Main card */}
+        <section className="md:col-span-2 p-6 rounded-2xl bg-white/[.03] border border-white/10">
+          <h2 className="font-semibold">What’s next</h2>
+          <ul className="mt-4 space-y-3 text-white/80">
+            <li className="flex gap-3">
+              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-400/80" />
+              <div>I’ll review your note and reply to the email you provided.</div>
+            </li>
+            <li className="flex gap-3">
+              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-400/80" />
+              <div>If it’s media or speaking, I’ll follow up with dates and a media kit.</div>
+            </li>
+          </ul>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href="#/" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
+              Return Home
+            </a>
+            <a href="#/contact" className="px-5 py-3 rounded-xl border border-white/15">
+              Send Another Message
+            </a>
+            <a
+              href="mailto:metellusa@gmail.com?subject=Follow-up%20on%20my%20message"
+              className="px-5 py-3 rounded-xl border border-white/15"
+            >
+              Email Me
+            </a>
+            <a
+              href="/media/Anaja-Metellus-Press-One-Sheet.pdf"
+              className="px-5 py-3 rounded-xl border border-white/15"
+              download
+            >
+              Download Media Kit (PDF)
+            </a>
+          </div>
+
+          <p className="mt-4 text-sm text-white/50">
+            Didn’t see a confirmation email? Check spam or contact me directly.
+          </p>
+        </section>
+
+        {/* Sidebar */}
+        <aside className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
+          <h3 className="font-semibold">Prefer direct contact?</h3>
+          <div className="mt-4 space-y-3 text-white/90">
+            <div>
+              <span className="text-white/60 text-sm">Email</span>
+              <div><a className="underline decoration-dotted" href="mailto:metellusa@gmail.com">metellusa@gmail.com</a></div>
+            </div>
+            <div>
+              <span className="text-white/60 text-sm">Phone</span>
+              <div><a className="underline decoration-dotted" href="tel:+18133629287">(813) 362-9287</a></div>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <h4 className="font-semibold text-sm text-white/90">Follow for launch updates</h4>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {/* Replace with real profiles */}
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+                className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
+                LinkedIn
+              </a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"
+                className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
+                Facebook
+              </a>
+              <a href="https://www.youtube.com/" target="_blank" rel="noreferrer"
+                className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
+                YouTube
+              </a>
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm text-white/60">
+            Thanks for reaching out—it means a lot.
+          </p>
+        </aside>
+      </div>
+    </main>
+  );
+}
+
 
 function RotatingGallery() {
   const slides = [
@@ -394,24 +529,81 @@ function ContactPage() {
     <main className="max-w-5xl mx-auto px-4 py-14">
       <h1 className="text-3xl font-bold">Contact</h1>
       <p className="mt-3 text-white/90">For media, speaking, or general inquiries, reach out anytime.</p>
+
       <div className="mt-8 grid md:grid-cols-2 gap-8">
+        {/* Left column: your direct contact info */}
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="space-y-3 text-white/90">
-            <div><span className="text-white/60 text-sm">Email</span><div><a className="underline decoration-dotted" href="mailto:metellusa@gmail.com">metellusa@gmail.com</a></div></div>
-            <div><span className="text-white/60 text-sm">Phone</span><div><a className="underline decoration-dotted" href="tel:+18133629287">(813) 362‑9287</a></div></div>
+            <div>
+              <span className="text-white/60 text-sm">Email</span>
+              <div><a className="underline decoration-dotted" href="mailto:metellusa@gmail.com">metellusa@gmail.com</a></div>
+            </div>
+            <div>
+              <span className="text-white/60 text-sm">Phone</span>
+              <div><a className="underline decoration-dotted" href="tel:+18133629287">(813) 362-9287</a></div>
+            </div>
           </div>
           <div className="mt-6 text-sm text-white/60">Prefer social? DM via Facebook or LinkedIn works too.</div>
         </div>
+
+        {/* Right column: Jotform-powered form with your styling */}
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Send a message</div>
-          <form className="mt-4 grid gap-3" onSubmit={(e)=>{e.preventDefault(); alert('Thanks! Your message has been captured locally. Hook this form to your email/CRM before launch.');}}>
-            <input required placeholder="Name" className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"/>
-            <input required type="email" placeholder="Email" className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"/>
-            <textarea required placeholder="How can I help?" className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 min-h-32 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"/>
+
+          {/* Replace the placeholder field names (qX_...) with your actual Jotform Unique Names */}
+          <form
+            className="mt-4 grid gap-3"
+            action="https://submit.jotform.com/submit/252288376581064"
+            method="post"
+            name="form_252288376581064"
+            id="252288376581064"
+          >
+            {/* (Optional) Honeypot for spam—Jotform ignores unknown fields */}
+            <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
+
+            {/* Full Name (Jotform 'Full Name' element uses [first] and [last]) */}
+            <input
+              required
+              placeholder="First name"
+              name="q3_name[first]"   /* ← replace with your Unique Name */
+              className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
+            />
+            <input
+              required
+              placeholder="Last name"
+              name="q3_name[last]"    /* ← replace with your Unique Name */
+              className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
+            />
+
+            {/* Email */}
+            <input
+              required
+              type="email"
+              placeholder="Email"
+              name="q4_email"             /* ← replace with your Unique Name */
+              className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
+            />
+
+            {/* Message (Long Text) */}
+            <textarea
+              required
+              placeholder="How can I help?"
+              name="q6_typeA"           /* ← replace with your Unique Name */
+              className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 min-h-32 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
+            />
+
             <div className="flex gap-3">
-              <button className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">Send</button>
-              <a href="mailto:metellusa@gmail.com" className="px-5 py-3 rounded-xl border border-white/15">Email instead</a>
+              <button type="submit" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
+                Send
+              </button>
+              <a href="mailto:metellusa@gmail.com" className="px-5 py-3 rounded-xl border border-white/15">
+                Email instead
+              </a>
             </div>
+
+            {/* Jotform expects these hidden fields to exist in many templates but they are not strictly required.
+                Your action URL already includes the form id. Keeping formID helps consistency. */}
+            <input type="hidden" name="formID" value="252288376581064" />
           </form>
         </div>
       </div>
