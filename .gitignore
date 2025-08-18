@@ -1,2 +1,3 @@
 # === Java build artifacts ===
 /node_modules/
+/dist

@@ -182,7 +182,7 @@ function InsideTheBook() {
       text: "Clear, approachable summaries of peer‑reviewed research on NDEs and what they imply about consciousness."
     },
     {
-      title: "An evangelical lens—widened",
+      title: "An evangelical lens widened",
       text: "Thoughtful engagement with scripture that invites curiosity without dogma."
     },
     {
@@ -278,15 +278,14 @@ function PreorderPage() {
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Retailers</div>
           <div className="mt-3 grid gap-3">
-            <a href="#" className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center">Amazon (coming soon)</a>
-            <a href="#" className="px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center">Barnes & Noble (coming soon)</a>
+            <a href="#" target="_blank" className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center">Amazon (coming soon)</a>
+            <a href="https://www.barnesandnoble.com/w/insights-from-beyond-anaja-metellus/1148069342?ean=9798294870904" target="_blank" className="px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center">Barnes & Noble</a>
           </div>
-          <p className="text-xs text-white/60 mt-3">Links will activate as soon as product pages are published.</p>
         </div>
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Email me when it’s live</div>
           <NotifyForm />
-          <p className="text-xs text-white/60 mt-3">We’ll send a single launch‑day email—no spam, ever.</p>
+          <p className="text-xs text-white/60 mt-3">We’ll send a single launch‑day email. No spam, ever!</p>
         </div>
       </div>
     </main>
@@ -294,20 +293,37 @@ function PreorderPage() {
 }
 
 function NotifyForm() {
-  // --- Mailchimp embed (replace with your actual form action URL) ---
-  // Find this in Mailchimp: Audience > Signup forms > Embedded forms.
-  // Example format: https://YOUR_DC.list-manage.com/subscribe/post?u=XXXXXXX&id=YYYYYYY
-  const MAILCHIMP_URL = "https://submit.jotform.com/submit/252258295013051";
+  const JOTFORM_ACTION = "https://submit.jotform.com/submit/252295883967073";
+  // Relative hash route—no domain hardcoded
+  const THANKYOU_URL = "#/thank-you";
+
   return (
-    <form className="mt-4" action={MAILCHIMP_URL} method="post" target="_blank" noValidate>
-      {/* honeypot to reduce bots (Mailchimp expects this name) */}
-      <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-        <input type="text" name="b_YOUR_U_YOUR_ID" tabIndex={-1} defaultValue="" />
-      </div>
+    <form
+      className="mt-4"
+      action={JOTFORM_ACTION}
+      method="post"
+      name="form_252295883967073"
+      id="252295883967073"
+      noValidate
+    >
+      {/* Honeypot */}
+      <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
+
       <div className="flex gap-3">
-        <input name="EMAIL" required type="email" placeholder="you@example.com" className="flex-1 px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]" />
-        <button className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold" type="submit">Notify me</button>
+        <input
+          name="q3_email"
+          required
+          type="email"
+          placeholder="you@example.com"
+          className="flex-1 px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
+        />
+        <button className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold" type="submit">
+          Notify me
+        </button>
       </div>
+
+      <input type="hidden" name="formID" value="252295883967073" />
+      <input type="hidden" name="thankyou_url" value={THANKYOU_URL} />
     </form>
   );
 }
@@ -390,7 +406,7 @@ function ThankYouPage() {
             </li>
             <li className="flex gap-3">
               <span className="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-400/80" />
-              <div>If it’s media or speaking, I’ll follow up with dates and a media kit.</div>
+              <div>If it’s media or speaking, I’ll follow up with possible dates.</div>
             </li>
           </ul>
 
@@ -398,21 +414,11 @@ function ThankYouPage() {
             <a href="#/" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
               Return Home
             </a>
-            <a href="#/contact" className="px-5 py-3 rounded-xl border border-white/15">
-              Send Another Message
-            </a>
             <a
               href="mailto:metellusa@gmail.com?subject=Follow-up%20on%20my%20message"
               className="px-5 py-3 rounded-xl border border-white/15"
             >
               Email Me
-            </a>
-            <a
-              href="/media/Anaja-Metellus-Press-One-Sheet.pdf"
-              className="px-5 py-3 rounded-xl border border-white/15"
-              download
-            >
-              Download Media Kit (PDF)
             </a>
           </div>
 
@@ -439,23 +445,19 @@ function ThankYouPage() {
             <h4 className="font-semibold text-sm text-white/90">Follow for launch updates</h4>
             <div className="mt-3 flex flex-wrap gap-2">
               {/* Replace with real profiles */}
-              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+              <a href="https://www.linkedin.com/in/anaja-metellus-a5b05743/" target="_blank" rel="noreferrer"
                 className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
                 LinkedIn
               </a>
-              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"
+              <a href="https://www.facebook.com/anaja.metellus" target="_blank" rel="noreferrer"
                 className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
                 Facebook
-              </a>
-              <a href="https://www.youtube.com/" target="_blank" rel="noreferrer"
-                className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
-                YouTube
               </a>
             </div>
           </div>
 
           <p className="mt-6 text-sm text-white/60">
-            Thanks for reaching out—it means a lot.
+            Thanks for reaching out! It means a lot.
           </p>
         </aside>
       </div>
@@ -531,7 +533,7 @@ function ContactPage() {
       <p className="mt-3 text-white/90">For media, speaking, or general inquiries, reach out anytime.</p>
 
       <div className="mt-8 grid md:grid-cols-2 gap-8">
-        {/* Left column: your direct contact info */}
+        {/* Left column: direct contact info */}
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="space-y-3 text-white/90">
             <div>
@@ -546,11 +548,10 @@ function ContactPage() {
           <div className="mt-6 text-sm text-white/60">Prefer social? DM via Facebook or LinkedIn works too.</div>
         </div>
 
-        {/* Right column: Jotform-powered form with your styling */}
+        {/* Right column: Jotform-powered form */}
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Send a message</div>
 
-          {/* Replace the placeholder field names (qX_...) with your actual Jotform Unique Names */}
           <form
             className="mt-4 grid gap-3"
             action="https://submit.jotform.com/submit/252288376581064"
@@ -565,13 +566,13 @@ function ContactPage() {
             <input
               required
               placeholder="First name"
-              name="q3_name[first]"   /* ← replace with your Unique Name */
+              name="q3_name[first]"
               className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
             />
             <input
               required
               placeholder="Last name"
-              name="q3_name[last]"    /* ← replace with your Unique Name */
+              name="q3_name[last]"
               className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
             />
 
@@ -580,15 +581,15 @@ function ContactPage() {
               required
               type="email"
               placeholder="Email"
-              name="q4_email"             /* ← replace with your Unique Name */
+              name="q4_email"
               className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
             />
 
-            {/* Message (Long Text) */}
+            {/* Message (Type A text) */}
             <textarea
               required
               placeholder="How can I help?"
-              name="q6_typeA"           /* ← replace with your Unique Name */
+              name="q6_typeA"
               className="px-4 py-3 rounded-xl bg-black/30 border border-white/15 min-h-32 focus:outline-none focus:ring-2 focus:ring-[#00B3FF]"
             />
 
@@ -600,9 +601,6 @@ function ContactPage() {
                 Email instead
               </a>
             </div>
-
-            {/* Jotform expects these hidden fields to exist in many templates but they are not strictly required.
-                Your action URL already includes the form id. Keeping formID helps consistency. */}
             <input type="hidden" name="formID" value="252288376581064" />
           </form>
         </div>
