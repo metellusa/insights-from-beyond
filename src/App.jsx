@@ -278,7 +278,7 @@ function PreorderPage() {
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Retailers</div>
           <div className="mt-3 grid gap-3">
-            <a href="#" target="_blank" className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center">Amazon (coming soon)</a>
+            <a href="https://www.amazon.com/Insights-Beyond-Exploration-Near-Death-Experiences-ebook/dp/B0FKT4LRVM/ref=sr_1_1?crid=2FMM2V82A20AI&dib=eyJ2IjoiMSJ9.FmYb60uWHve8D9C6VjAJrQ.JFrGh5x_cpa0SYK0b8828cXI39wX00yJPIrrVunsgqc&dib_tag=se&keywords=insights+from+beyond+anaja+metellus&qid=1755644980&sprefix=insights+from+beyond+anaja+metellus%2Caps%2C140&sr=8-1" target="_blank" className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center">Amazon</a>
             <a href="https://www.barnesandnoble.com/w/insights-from-beyond-anaja-metellus/1148069342?ean=9798294870904" target="_blank" className="px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center">Barnes & Noble</a>
           </div>
         </div>
@@ -335,7 +335,7 @@ function AboutPage() {
         <div className="md:col-span-2">
           <h1 className="text-3xl font-bold mb-3">About Anaja Metellus</h1>
           <p className="text-white/90 leading-relaxed">
-            Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who is fascinated by the intersection of science, scripture, and spiritual experience. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies—accounts that didn’t pull him away from faith but invited him to engage it more deeply and honestly.
+            Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who is fascinated by the intersection of science, scripture, and spiritual experiences. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies. These accounts didn’t pull him away from his worldview but invited him to engage it more deeply and honestly.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
             Professionally, Anaja builds backend systems and APIs. Personally, he brings the same curiosity and rigor to questions of meaning. <span className="italic">Insights from Beyond</span> is the result of years spent reading research, interviewing experiencers, and weighing NDE insights alongside the Bible. The book aims to bridge science and spirituality with humility: not to replace doctrine, but to kindle love, courage, and a truer picture of God’s heart.
