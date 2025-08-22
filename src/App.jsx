@@ -338,6 +338,9 @@ function AboutPage() {
             Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who is fascinated by the intersection of science, scripture, and spiritual experiences. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies. These accounts didn’t pull him away from his worldview but invited him to engage it more deeply and honestly.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
+            Anaja once began a Master’s program at Dallas Theological Seminary, where he sharpened his theological curiosity before stepping away for personal reasons. He is the co-founder of the Power Prayer Line Ministry; a space where people dial in for daily prayers. He is also a frequently invited speaker at churches across Orlando and Tampa, where he shares insights on love and spiritual transformation.
+          </p>
+          <p className="text-white/90 leading-relaxed mt-4">
             Professionally, Anaja builds backend systems and APIs. Personally, he brings the same curiosity and rigor to questions of meaning. <span className="italic">Insights from Beyond</span> is the result of years spent reading research, interviewing experiencers, and weighing NDE insights alongside the Bible. The book aims to bridge science and spirituality with humility: not to replace doctrine, but to kindle love, courage, and a truer picture of God’s heart.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
