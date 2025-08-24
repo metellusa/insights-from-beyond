@@ -7,14 +7,17 @@ import React, { useEffect, useMemo, useState } from "react";
 // Sunrise blue: #A8D0FF
 // Soft white: #F8FAFC
 
-// Parse ?query params that come after the hash, e.g. /thank-you?name=Anaja
-function getHashQueryParam(key) {
+function getQueryParam(key) {
   if (typeof window === 'undefined') return null;
-  const hash = window.location.hash || '';
-  const qIndex = hash.indexOf('?');
-  if (qIndex === -1) return null;
-  const params = new URLSearchParams(hash.slice(qIndex + 1));
-  const val = params.get(key);
+  const searchParams = new URLSearchParams(window.location.search || '');
+  let val = searchParams.get(key);
+  if (!val) {
+    const hash = window.location.hash || '';
+    const qIndex = hash.indexOf('?');
+    if (qIndex !== -1) {
+      val = new URLSearchParams(hash.slice(qIndex + 1)).get(key);
+    }
+  }
   return val ? val.trim() : null;
 }
 
@@ -91,6 +94,7 @@ function MainRouter() {
   if (path.startsWith('/about')) return <AboutPage />;
   if (path.startsWith('/contact')) return <ContactPage />;
   if (path.startsWith('/preorder')) return <PreorderPage />;
+  if (path.startsWith('/thank-you')) return <ThankYouPage />;
   return <HomePage />;
 }
 
@@ -411,22 +415,13 @@ function AboutPage() {
 }
 
 function ThankYouPage() {
-  // From Jotform, set redirect to .../thank-you?name={name:first}
+  // From Jotform, set redirect to: https://www.insightsfrombeyond.com/thank-you?name={name:first}
   const [firstName, setFirstName] = useState(null);
 
   useEffect(() => {
-    // read from hash query (e.g. /thank-you?name=Anaja)
-    const nameRaw = getHashQueryParam('name');
+    const nameRaw = getQueryParam('name'); // <-- read from ?name=
     if (nameRaw) setFirstName(nameRaw.split(' ')[0]);
   }, []);
-
-  // If someone hits this URL directly, you can optionally nudge them back:
-  // useEffect(() => {
-  //   if (!getHashQueryParam('name')) {
-  //     const t = setTimeout(() => (window.location.hash = '/contact'), 6000);
-  //     return () => clearTimeout(t);
-  //   }
-  // }, []);
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-20">
