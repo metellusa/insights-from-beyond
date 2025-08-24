@@ -7,7 +7,7 @@ import React, { useEffect, useMemo, useState } from "react";
 // Sunrise blue: #A8D0FF
 // Soft white: #F8FAFC
 
-// Parse ?query params that come after the hash, e.g. #/thank-you?name=Anaja
+// Parse ?query params that come after the hash, e.g. /thank-you?name=Anaja
 function getHashQueryParam(key) {
   if (typeof window === 'undefined') return null;
   const hash = window.location.hash || '';
@@ -34,14 +34,14 @@ function SiteNav() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-[#0B1B2B]/80 border-b border-white/10">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <a href="#/" className="flex items-center gap-3 group">
+        <a href="/" className="flex items-center gap-3 group">
           <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#00B3FF] to-[#A8D0FF] shadow-lg shadow-cyan-500/30" />
           <span className="font-semibold tracking-wide text-white group-hover:text-[#A8D0FF] transition">Insights from Beyond</span>
         </a>
         <nav className="hidden md:flex items-center gap-6">
-          <a className="hover:text-[#A8D0FF]" href="#/about">About</a>
-          <a className="hover:text-[#A8D0FF]" href="#/contact">Contact</a>
-          <a className="px-4 py-2 rounded-xl bg-[#00B3FF] hover:bg-[#36c7ff] text-[#0B1B2B] font-semibold shadow-lg" href="#/preorder">Pre‑order</a>
+          <a className="hover:text-[#A8D0FF]" href="/about">About</a>
+          <a className="hover:text-[#A8D0FF]" href="/contact">Contact</a>
+          <a className="px-4 py-2 rounded-xl bg-[#00B3FF] hover:bg-[#36c7ff] text-[#0B1B2B] font-semibold shadow-lg" href="/preorder">Pre‑order</a>
         </nav>
         <button className="md:hidden p-2 rounded-lg border border-white/10" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg>
@@ -50,9 +50,9 @@ function SiteNav() {
       {open && (
         <div className="md:hidden border-t border-white/10">
           <div className="px-4 py-3 flex flex-col gap-3">
-            <a className="hover:text-[#A8D0FF]" href="#/about" onClick={() => setOpen(false)}>About</a>
-            <a className="hover:text-[#A8D0FF]" href="#/contact" onClick={() => setOpen(false)}>Contact</a>
-            <a className="px-4 py-2 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow" href="#/preorder" onClick={() => setOpen(false)}>Pre‑order</a>
+            <a className="hover:text-[#A8D0FF]" href="/about" onClick={() => setOpen(false)}>About</a>
+            <a className="hover:text-[#A8D0FF]" href="/contact" onClick={() => setOpen(false)}>Contact</a>
+            <a className="px-4 py-2 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow" href="/preorder" onClick={() => setOpen(false)}>Pre‑order</a>
           </div>
         </div>
       )}
@@ -62,17 +62,35 @@ function SiteNav() {
 
 // ---------------- ROUTER ----------------
 function MainRouter() {
-  const [hash, setHash] = useState(typeof window !== 'undefined' ? window.location.hash : '#/');
+  const [path, setPath] = useState(
+    typeof window !== 'undefined' ? window.location.pathname : '/'
+  );
+
   useEffect(() => {
-    const onHash = () => setHash(window.location.hash || '#/');
-    window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
+    const onPop = () => setPath(window.location.pathname || '/');
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
-  if (hash.startsWith('#/about')) return <AboutPage />;
-  if (hash.startsWith('#/contact')) return <ContactPage />;
-  if (hash.startsWith('#/preorder')) return <PreorderPage />;
-  if (hash.startsWith('#/thank-you')) return <ThankYouPage />;
+  // Optional: client-side link handling so <a> doesn't full-reload
+  useEffect(() => {
+    const click = (e) => {
+      const a = e.target.closest('a[href^="/"]');
+      if (!a) return;
+      const url = new URL(a.href);
+      if (url.origin === window.location.origin) {
+        e.preventDefault();
+        window.history.pushState({}, '', url.pathname);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }
+    };
+    document.addEventListener('click', click);
+    return () => document.removeEventListener('click', click);
+  }, []);
+
+  if (path.startsWith('/about')) return <AboutPage />;
+  if (path.startsWith('/contact')) return <ContactPage />;
+  if (path.startsWith('/preorder')) return <PreorderPage />;
   return <HomePage />;
 }
 
@@ -104,7 +122,7 @@ function Hero() {
             A bridge between science and spirituality. In <span className="italic">Insights from Beyond</span>, Anaja Metellus explores near‑death experiences through scripture, research, and a profoundly personal journey.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow-lg">
+            <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow-lg">
               Pre‑order now
             </a>
             <a href="#about-blurb" className="px-5 py-3 rounded-xl border border-white/15 hover:border-white/30">Read description</a>
@@ -167,8 +185,8 @@ function ValueProps() {
           To Anaja, NDEs aren’t hallucinations but spiritual breadcrumbs—God’s way of whispering to us through the veil. In an age where religion can feel divisive or shallow, this book offers something deeper. Whether you’re a believer, seeker, or curious skeptic, you’re invited to explore the mystery. You may find that God isn’t offended by your search. In fact, He may have been waiting for you to begin it.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a href="#/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
-          <a href="#/about" className="px-5 py-3 rounded-xl border border-white/15">About the author</a>
+          <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
+          <a href="/about" className="px-5 py-3 rounded-xl border border-white/15">About the author</a>
         </div>
       </div>
     </section>
@@ -259,8 +277,8 @@ function CTA() {
             <p className="text-white/80 mt-1">Pre‑orders help the launch make a splash on release day.</p>
           </div>
           <div className="flex gap-3">
-            <a href="#/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
-            <a href="#/contact" className="px-5 py-3 rounded-xl border border-white/15">Media & Speaking</a>
+            <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
+            <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">Media & Speaking</a>
           </div>
         </div>
       </div>
@@ -274,12 +292,44 @@ function PreorderPage() {
       <h1 className="text-3xl font-bold">Pre‑order</h1>
       <p className="mt-3 text-white/90">Reserve your copy ahead of the September 26 launch. Choose a retailer below, or leave your email and we’ll notify you the moment it goes live.</p>
 
+
       <div className="mt-8 grid md:grid-cols-2 gap-6">
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Retailers</div>
           <div className="mt-3 grid gap-3">
-            <a href="https://www.amazon.com/Insights-Beyond-Exploration-Near-Death-Experiences-ebook/dp/B0FKT4LRVM/ref=sr_1_1?crid=2FMM2V82A20AI&dib=eyJ2IjoiMSJ9.FmYb60uWHve8D9C6VjAJrQ.JFrGh5x_cpa0SYK0b8828cXI39wX00yJPIrrVunsgqc&dib_tag=se&keywords=insights+from+beyond+anaja+metellus&qid=1755644980&sprefix=insights+from+beyond+anaja+metellus%2Caps%2C140&sr=8-1" target="_blank" className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center">Amazon</a>
-            <a href="https://www.barnesandnoble.com/w/insights-from-beyond-anaja-metellus/1148069342?ean=9798294870904" target="_blank" className="px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center">Barnes & Noble</a>
+            <a
+              href="https://www.amazon.com/Insights-Beyond-Exploration-Near-Death-Experiences-ebook/dp/B0FKT4LRVM/ref=sr_1_1?crid=2FMM2V82A20AI&dib=eyJ2IjoiMSJ9.FmYb60uWHve8D9C6VjAJrQ.JFrGh5x_cpa0SYK0b8828cXI39wX00yJPIrrVunsgqc&dib_tag=se&keywords=insights+from+beyond+anaja+metellus&qid=1755644980&sprefix=insights+from+beyond+anaja+metellus%2Caps%2C140&sr=8-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center"
+            >
+              Amazon
+            </a>
+            <a
+              href="https://www.barnesandnoble.com/w/insights-from-beyond-anaja-metellus/1148069342?ean=9798294870904"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center"
+            >
+              Barnes & Noble
+            </a>
+            {/* Add Apple Books and Google Play Books */}
+            <a
+              href="#"
+              aria-disabled="true"
+              className="px-4 py-3 rounded-xl bg-white/10 text-white/70 font-semibold text-center cursor-not-allowed"
+              title="Apple Books link coming soon"
+            >
+              Apple Books (coming soon)
+            </a>
+            <a
+              href="#"
+              aria-disabled="true"
+              className="px-4 py-3 rounded-xl bg-white/10 text-white/70 font-semibold text-center cursor-not-allowed"
+              title="Google Play Books link coming soon"
+            >
+              Google Play Books (coming soon)
+            </a>
           </div>
         </div>
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
@@ -289,13 +339,13 @@ function PreorderPage() {
         </div>
       </div>
     </main>
-  );
+  )
 }
 
 function NotifyForm() {
   const JOTFORM_ACTION = "https://submit.jotform.com/submit/252295883967073";
   // Relative hash route—no domain hardcoded
-  const THANKYOU_URL = "#/thank-you";
+  const THANKYOU_URL = "/thank-you";
 
   return (
     <form
@@ -347,8 +397,8 @@ function AboutPage() {
             Anaja lives in Orlando, Florida with his family. He enjoys quality time with family, listening to great music, having conversations about theology and consciousness, and an occasional glass of red wine. He also enjoys the simple practices that keep a soul healthy: modeling Jesus, prayer, good company, and staying active.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">Pre‑order the book</a>
-            <a href="#/contact" className="px-5 py-3 rounded-xl border border-white/15">Media inquiries</a>
+            <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">Pre‑order the book</a>
+            <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">Media inquiries</a>
           </div>
         </div>
         <div>
@@ -361,11 +411,11 @@ function AboutPage() {
 }
 
 function ThankYouPage() {
-  // Optional personalization from Jotform: set redirect to ...#/thank-you?name={name:first}
+  // From Jotform, set redirect to .../thank-you?name={name:first}
   const [firstName, setFirstName] = useState(null);
 
   useEffect(() => {
-    // read from hash query (e.g. #/thank-you?name=Anaja)
+    // read from hash query (e.g. /thank-you?name=Anaja)
     const nameRaw = getHashQueryParam('name');
     if (nameRaw) setFirstName(nameRaw.split(' ')[0]);
   }, []);
@@ -373,7 +423,7 @@ function ThankYouPage() {
   // If someone hits this URL directly, you can optionally nudge them back:
   // useEffect(() => {
   //   if (!getHashQueryParam('name')) {
-  //     const t = setTimeout(() => (window.location.hash = '#/contact'), 6000);
+  //     const t = setTimeout(() => (window.location.hash = '/contact'), 6000);
   //     return () => clearTimeout(t);
   //   }
   // }, []);
@@ -414,7 +464,7 @@ function ThankYouPage() {
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#/" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
+            <a href="/" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
               Return Home
             </a>
             <a
@@ -623,10 +673,10 @@ function SiteFooter() {
         <div>
           <div className="font-semibold mb-2">Explore</div>
           <ul className="space-y-2 text-white/80 text-sm">
-            <li><a href="#/">Home</a></li>
-            <li><a href="#/about">About</a></li>
-            <li><a href="#/preorder">Pre‑order</a></li>
-            <li><a href="#/contact">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/preorder">Pre‑order</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div>
