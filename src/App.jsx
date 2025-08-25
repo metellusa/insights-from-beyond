@@ -680,11 +680,11 @@ function FAQPage() {
     },
     {
       "question": "Does the book discuss the preexistence of the soul?",
-      "answer": "Yes. It addresses testimonies that hint at pre-earth life and evaluates them against Christian perspectives."
+      "answer": "Yes. It engages testimonies that suggest a life before birth, exploring how they might fit or clash with Christian thought."
     },
     {
       "question": "Who is Anaja Metellus?",
-      "answer": "Anaja Metellus is a husband, father, and avid seeker of truth. He briefly enrolled in a Master’s program at Dallas Theological Seminary before stepping away for personal reasons. He is a seasoned software engineer and the author of 'Insights from Beyond,' a book exploring near-death experiences, Christian theology, and the integration of science and spirituality."
+      "answer": "Anaja Metellus is a husband, father, and avid seeker of truth. He briefly enrolled in a Master’s program at Dallas Theological Seminary before stepping away for personal reasons. Professionally, he is a seasoned software engineer and published author of Insights from Beyond."
     },
     {
       "question": "What inspired Anaja Metellus to write Insights from Beyond?",
@@ -765,7 +765,7 @@ function SiteFooter() {
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/faq">FAQ page</a></li>
+            <li><a href="/faq">FAQ</a></li>
             <li><a href="/preorder">Pre‑order</a></li>
           </ul>
         </div>
