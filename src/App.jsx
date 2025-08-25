@@ -44,6 +44,7 @@ function SiteNav() {
         <nav className="hidden md:flex items-center gap-6">
           <a className="hover:text-[#A8D0FF]" href="/about">About</a>
           <a className="hover:text-[#A8D0FF]" href="/contact">Contact</a>
+          <a className="hover:text-[#A8D0FF]" href="/faq">FAQ</a>
           <a className="px-4 py-2 rounded-xl bg-[#00B3FF] hover:bg-[#36c7ff] text-[#0B1B2B] font-semibold shadow-lg" href="/preorder">Pre‑order</a>
         </nav>
         <button className="md:hidden p-2 rounded-lg border border-white/10" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -95,6 +96,7 @@ function MainRouter() {
   if (path.startsWith('/contact')) return <ContactPage />;
   if (path.startsWith('/preorder')) return <PreorderPage />;
   if (path.startsWith('/thank-you')) return <ThankYouPage />;
+  if (path.startsWith('/faq')) return <FAQPage />;
   return <HomePage />;
 }
 
@@ -657,6 +659,98 @@ function ContactPage() {
   );
 }
 
+function FAQPage() {
+  React.useEffect(() => {
+    document.title = "FAQ • Insights from Beyond";
+  }, []);
+
+  // Questions list
+  const questions = [
+    {
+      "question": "What happens after we die?",
+      "answer": "This question has dominated humanity for centuries. Insights from Beyond doesn’t claim to have all the answers, but it explores powerful near-death experiences and timeless biblical themes in an attempt to unlock what may await us after death."
+    },
+    {
+      "question": "Are near-death experiences compatible with Christianity?",
+      "answer": "Yes. Many NDE elements resonate with Scripture when carefully interpreted. The book invites thoughtful and faith-honoring dialogue rather than easy answers."
+    },
+    {
+      "question": "How does science fit with spirituality?",
+      "answer": "Science explores how life works, while spirituality asks why it matters. Insights from Beyond shows how the two intersect through the study of near-death experiences."
+    },
+    {
+      "question": "Does the book discuss the preexistence of the soul?",
+      "answer": "Yes. It addresses testimonies that hint at pre-earth life and evaluates them against Christian perspectives."
+    },
+    {
+      "question": "Who is Anaja Metellus?",
+      "answer": "Anaja Metellus is a husband, father, and avid seeker of truth. He briefly enrolled in a Master’s program at Dallas Theological Seminary before stepping away for personal reasons. He is a seasoned software engineer and the author of 'Insights from Beyond,' a book exploring near-death experiences, Christian theology, and the integration of science and spirituality."
+    },
+    {
+      "question": "What inspired Anaja Metellus to write Insights from Beyond?",
+      "answer": "After a season of profound personal loss, Anaja Metellus began exploring near-death experience testimonies, which opened up new perspectives on faith and the afterlife. These accounts did not pull him away from Christianity but deepened his engagement with it. Anaja believes that insights gleaned from NDEs could positively impact the world."
+    }
+  ]
+
+  return (
+    <main className="max-w-5xl mx-auto px-4 py-14">
+      {/* Inject JSON-LD for rich results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(questions) }}
+      />
+
+      <h1 className="text-3xl font-bold">Frequently Asked Questions</h1>
+      <p className="mt-3 text-white/90">
+        Answers to common questions about the book, near‑death experiences, and Anaja’s work.
+      </p>
+
+      <section className="mt-8">
+        <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[.03]">
+          {questions.map((item, idx) => (
+            <Accordion key={idx} title={item.question} body={item.answer} defaultOpen={idx === 0} />
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-10 flex gap-3">
+        <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
+          Pre‑order the book
+        </a>
+        <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">
+          Contact Anaja
+        </a>
+      </div>
+    </main>
+  );
+}
+
+function Accordion({ title, body, defaultOpen = false }) {
+  const [open, setOpen] = React.useState(defaultOpen);
+  return (
+    <div className="px-5 md:px-6">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full py-4 flex items-start justify-between gap-4 text-left"
+        aria-expanded={open}
+      >
+        <span className="font-semibold">{title}</span>
+        <span className="mt-1 shrink-0 rounded-md border border-white/15 p-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" className={`transition ${open ? "rotate-180" : ""}`}>
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        </span>
+      </button>
+      {open && (
+        <div className="pb-5 text-white/85 leading-relaxed">
+          {body}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
 function SiteFooter() {
   return (
     <footer className="border-t border-white/10">
@@ -670,8 +764,9 @@ function SiteFooter() {
           <ul className="space-y-2 text-white/80 text-sm">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/preorder">Pre‑order</a></li>
             <li><a href="/contact">Contact</a></li>
+            <li><a href="/faq">FAQ page</a></li>
+            <li><a href="/preorder">Pre‑order</a></li>
           </ul>
         </div>
         <div>
