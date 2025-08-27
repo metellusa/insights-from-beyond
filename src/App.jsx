@@ -295,9 +295,10 @@ function CTA() {
 function PreorderPage() {
   return (
     <main className="max-w-5xl mx-auto px-4 py-14">
-      <h1 className="text-3xl font-bold">Pre‑order</h1>
-      <p className="mt-3 text-white/90">Reserve your copy ahead of the September 26 launch. Choose a retailer below, or leave your email and we’ll notify you the moment it goes live.</p>
-
+      <h1 className="text-3xl font-bold">Pre-order</h1>
+      <p className="mt-3 text-white/90">
+        Reserve your copy ahead of the September 26 launch. Choose a retailer below, or leave your email and we’ll notify you the moment it goes live.
+      </p>
 
       <div className="mt-8 grid md:grid-cols-2 gap-6">
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
@@ -307,46 +308,56 @@ function PreorderPage() {
               href="https://www.amazon.com/Insights-Beyond-Exploration-Near-Death-Experiences-ebook/dp/B0FKT4LRVM/ref=sr_1_1?crid=2FMM2V82A20AI&dib=eyJ2IjoiMSJ9.FmYb60uWHve8D9C6VjAJrQ.JFrGh5x_cpa0SYK0b8828cXI39wX00yJPIrrVunsgqc&dib_tag=se&keywords=insights+from+beyond+anaja+metellus&qid=1755644980&sprefix=insights+from+beyond+anaja+metellus%2Caps%2C140&sr=8-1"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center"
+              aria-label="Pre-order Insights from Beyond on Amazon (opens in new tab)"
+              className="w-full px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center hover:bg-[#36c7ff] transition"
             >
               Amazon
             </a>
+
             <a
               href="https://www.barnesandnoble.com/w/insights-from-beyond-anaja-metellus/1148069342?ean=9798294870904"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center"
+              aria-label="Pre-order Insights from Beyond on Barnes and Noble (opens in new tab)"
+              className="w-full px-4 py-3 rounded-xl bg-[#A8D0FF] text-[#0B1B2B] font-semibold text-center hover:bg-[#c2ddff] transition"
             >
               Barnes & Noble
             </a>
-            {/* Add Apple Books and Google Play Books */}
+
             <a
-              href="#"
-              aria-disabled="true"
-              className="px-4 py-3 rounded-xl bg-white/10 text-white/70 font-semibold text-center cursor-not-allowed"
-              title="Apple Books link coming soon"
+              href="https://books.apple.com/us/book/insights-from-beyond-an-exploration-of-near/id6751444754"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pre-order Insights from Beyond on Apple Books (opens in new tab)"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 text-white font-semibold text-center hover:bg-white/15 transition"
             >
-              Apple Books (coming soon)
+              Apple Books
             </a>
+
             <a
-              href="#"
-              aria-disabled="true"
-              className="px-4 py-3 rounded-xl bg-white/10 text-white/70 font-semibold text-center cursor-not-allowed"
-              title="Google Play Books link coming soon"
+              href="https://books.google.com/books/about?id=IHmAEQAAQBAJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pre-order Insights from Beyond on Google Play Books (opens in new tab)"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 text-white font-semibold text-center hover:bg-white/15 transition"
             >
-              Google Play Books (coming soon)
+              Google Play Books
             </a>
           </div>
         </div>
+
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
           <div className="font-semibold">Email me when it’s live</div>
           <NotifyForm />
-          <p className="text-xs text-white/60 mt-3">We’ll send a single launch‑day email. No spam, ever!</p>
+          <p className="text-xs text-white/60 mt-3">
+            We’ll send a single launch-day email. No spam, ever!
+          </p>
         </div>
       </div>
     </main>
-  )
+  );
 }
+
 
 function NotifyForm() {
   const JOTFORM_ACTION = "https://submit.jotform.com/submit/252295883967073";
