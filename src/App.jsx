@@ -246,7 +246,7 @@ function Endorsements() {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
-              quote: "A thoughtful bridge between rigorous research and living faith—warm, generous, and deeply humane.",
+              quote: "A thoughtful bridge between rigorous research and living faith. Warm and deeply humane.",
               name: "Advance Reader",
               title: ""
             },
@@ -405,7 +405,7 @@ function AboutPage() {
             Anaja Metellus is a husband, father of 2 boys, software engineer, and lifelong seeker who is fascinated by the intersection of science, scripture, and spiritual experiences. Raised within Evangelical Christianity, he began re‑examining his inherited worldview after a season of profound loss in 2018. A late‑night search led him to the growing body of near‑death experience (NDE) testimonies. These accounts didn’t pull him away from his worldview but invited him to engage it more deeply and honestly.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
-            Anaja once began a Master’s program at Dallas Theological Seminary, where he sharpened his theological curiosity before stepping away for personal reasons. He is the co-founder of the Power Prayer Line Ministry; a space where people dial in for daily prayers. He is also a frequently invited speaker at churches across Orlando and Tampa.
+            Anaja began a Master’s program at Dallas Theological Seminary in 2012, where he sharpened his theological curiosity before stepping away for personal reasons. He is the co-founder of the Power Prayer Line Ministry; a space where people dial in for daily prayers and bible study. He is also a frequently invited speaker at churches across Orlando and Tampa.
           </p>
           <p className="text-white/90 leading-relaxed mt-4">
             Professionally, Anaja builds backend systems and APIs. Personally, he brings the same curiosity and rigor to questions of meaning. <span className="italic">Insights from Beyond</span> is the result of years spent reading research, interviewing experiencers, and weighing NDE insights alongside the Bible. The book aims to bridge science and spirituality with humility: not to replace doctrine, but to kindle love, courage, and a truer picture of God’s heart.
@@ -505,7 +505,6 @@ function ThankYouPage() {
           <div className="mt-6">
             <h4 className="font-semibold text-sm text-white/90">Follow for launch updates</h4>
             <div className="mt-3 flex flex-wrap gap-2">
-              {/* Replace with real profiles */}
               <a href="https://www.linkedin.com/in/anaja-metellus-a5b05743/" target="_blank" rel="noreferrer"
                 className="px-3 py-2 rounded-lg bg-white/[.05] border border-white/10 text-white/80 text-sm hover:bg-white/[.08]">
                 LinkedIn
@@ -535,7 +534,9 @@ function RotatingGallery() {
     { src: "/images/anaja-metellus-looking-at-book.webp", alt: "Anaja Metellus, author of Insights from Beyond" },
     { src: "/images/insights-from-beyond-book-and-anaja-metellus.webp", alt: "Insights from Beyond book with Anaja Metellus" },
     { src: "/images/insights-from-beyond-dedication-page.webp", alt: "Insights from Beyond dedication page" },
-    { src: "/images/insights-from-beyond-on-table.webp", alt: "Insights from Beyond book on table" }
+    { src: "/images/insights-from-beyond-on-table.webp", alt: "Insights from Beyond book on table" },
+    { src: "/images/anaja-metellus-family.webp", alt: "Anaja Metellus's family" },
+    { src: "/images/anaja-metellus-standing.webp", alt: "Anaja Metellus, author of Insights from Beyond" }
   ];
   const [i, setI] = React.useState(0);
 
@@ -606,7 +607,7 @@ function ContactPage() {
               <div><a className="underline decoration-dotted" href="tel:+18133629287">(813) 362-9287</a></div>
             </div>
           </div>
-          <div className="mt-6 text-sm text-white/60">Prefer social? DM via Facebook or LinkedIn works too.</div>
+          <div className="mt-6 text-sm text-white/60">Prefer social? DM via <a href="https://www.facebook.com/anaja.metellus" className="font-semibold"><></>Facebook</a> or <a href="https://www.linkedin.com/in/anaja-metellus-a5b05743/" className="font-semibold"> LinkedIn</a> works too.</div>
         </div>
 
         {/* Right column: Jotform-powered form */}

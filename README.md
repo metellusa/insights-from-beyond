@@ -8,13 +8,14 @@ The site is **automatically deployed on Netlify** whenever changes are pushed to
 
 ## ✨ Features
 
-* 📖 **Book overview**: themes, key ideas, and inside-the-book highlights
-* ⏳ **Countdown timer**: dynamically ticking down to launch day
-* 🛒 **Pre-order page**: retailer links + email signup form (via Jotform)
-* 👤 **About page**: author bio + rotating image gallery
-* 📝 **Contact page**: direct contact info + form
-* ✅ **Thank-you page**: friendly confirmation after form submission
-* 📱 **Responsive**: styled with Tailwind and optimized for mobile/desktop
+*  **Book overview**: themes, key ideas, and inside-the-book highlights
+*  **Countdown timer**: dynamically ticking down to launch day
+*  **Pre-order page**: retailer links + email signup form (via Jotform)
+*  **About page**: author bio + rotating image gallery
+*  **FAQ page**: frequently asked questions about the book and author
+*  **Contact page**: direct contact info + form
+*  **Thank-you page**: friendly confirmation after form submission
+*  **Responsive**: styled with Tailwind and optimized for mobile/desktop
 
 ---
 
@@ -62,7 +63,7 @@ The optimized build output goes to the `/dist` folder.
 ## 📂 Project Structure
 
 * **`/src/App.jsx`** → App entry point (navigation + routing)
-* **Pages:** Home, Preorder, About, Contact, Thank You
+* **Pages:** Home, Preorder, About, FAQ, Contact, Thank You
 * **Components:** Countdown, NotifyForm, RotatingGallery, SiteNav, SiteFooter
 * **Styling:** Tailwind CSS with palette inspired by the book cover
 
@@ -77,7 +78,7 @@ Replace placeholders with high-res launch assets (book cover, author portraits, 
 
 ## 🔗 External Integrations
 
-* **Retailer links**: Amazon, Barnes & Noble, etc. (edit in `PreorderPage`).
+* **Retailer links**: Amazon, Barnes & Noble, Apple Books, and Google Play Books. (edit in `PreorderPage`).
 * **Jotform forms**: Power email signups and contact messages (IDs are hardcoded, swap if needed).
 * **Social links**: Configurable in `ThankYouPage` and `SiteFooter`.
 
