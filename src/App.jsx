@@ -706,7 +706,6 @@ function FAQPage() {
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-14">
-      {/* Inject JSON-LD for rich results */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(questions) }}
