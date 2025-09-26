@@ -45,7 +45,7 @@ function SiteNav() {
           <a className="hover:text-[#A8D0FF]" href="/about">About</a>
           <a className="hover:text-[#A8D0FF]" href="/contact">Contact</a>
           <a className="hover:text-[#A8D0FF]" href="/faq">FAQ</a>
-          <a className="px-4 py-2 rounded-xl bg-[#00B3FF] hover:bg-[#36c7ff] text-[#0B1B2B] font-semibold shadow-lg" href="/preorder">Pre‑order</a>
+          <a className="px-4 py-2 rounded-xl bg-[#00B3FF] hover:bg-[#36c7ff] text-[#0B1B2B] font-semibold shadow-lg" href="/order">Pre‑order</a>
         </nav>
         <button className="md:hidden p-2 rounded-lg border border-white/10" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg>
@@ -56,7 +56,7 @@ function SiteNav() {
           <div className="px-4 py-3 flex flex-col gap-3">
             <a className="hover:text-[#A8D0FF]" href="/about" onClick={() => setOpen(false)}>About</a>
             <a className="hover:text-[#A8D0FF]" href="/contact" onClick={() => setOpen(false)}>Contact</a>
-            <a className="px-4 py-2 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow" href="/preorder" onClick={() => setOpen(false)}>Pre‑order</a>
+            <a className="px-4 py-2 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow" href="/order" onClick={() => setOpen(false)}>Pre‑order</a>
           </div>
         </div>
       )}
@@ -94,7 +94,7 @@ function MainRouter() {
 
   if (path.startsWith('/about')) return <AboutPage />;
   if (path.startsWith('/contact')) return <ContactPage />;
-  if (path.startsWith('/preorder')) return <PreorderPage />;
+  if (path.startsWith('/order')) return <OrderPage />;
   if (path.startsWith('/thank-you')) return <ThankYouPage />;
   if (path.startsWith('/faq')) return <FAQPage />;
   return <HomePage />;
@@ -128,7 +128,7 @@ function Hero() {
             A bridge between science and spirituality. In <span className="italic">Insights from Beyond</span>, Anaja Metellus explores near‑death experiences through scripture, research, and a profoundly personal journey.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow-lg">
+            <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow-lg">
               Pre‑order now
             </a>
             <a href="#about-blurb" className="px-5 py-3 rounded-xl border border-white/15 hover:border-white/30">Read description</a>
@@ -191,7 +191,7 @@ function ValueProps() {
           To Anaja, NDEs aren’t hallucinations but spiritual breadcrumbs—God’s way of whispering to us through the veil. In an age where religion can feel divisive or shallow, this book offers something deeper. Whether you’re a believer, seeker, or curious skeptic, you’re invited to explore the mystery. You may find that God isn’t offended by your search. In fact, He may have been waiting for you to begin it.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
+          <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
           <a href="/about" className="px-5 py-3 rounded-xl border border-white/15">About the author</a>
         </div>
       </div>
@@ -283,7 +283,7 @@ function CTA() {
             <p className="text-white/80 mt-1">Pre‑orders help the launch make a splash on release day.</p>
           </div>
           <div className="flex gap-3">
-            <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
+            <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
             <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">Media & Speaking</a>
           </div>
         </div>
@@ -292,7 +292,7 @@ function CTA() {
   );
 }
 
-function PreorderPage() {
+function OrderPage() {
   return (
     <main className="max-w-5xl mx-auto px-4 py-14">
       <h1 className="text-3xl font-bold">Pre-order</h1>
@@ -414,7 +414,7 @@ function AboutPage() {
             Anaja lives in Orlando, Florida with his family. He enjoys quality time with family, listening to great music, having conversations about theology and consciousness, and an occasional glass of red wine. He also enjoys the simple practices that keep a soul healthy: modeling Jesus, prayer, good company, and staying active.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">Pre‑order the book</a>
+            <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">Pre‑order the book</a>
             <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">Media inquiries</a>
           </div>
         </div>
@@ -725,7 +725,7 @@ function FAQPage() {
       </section>
 
       <div className="mt-10 flex gap-3">
-        <a href="/preorder" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
+        <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
           Pre‑order the book
         </a>
         <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">
@@ -777,7 +777,7 @@ function SiteFooter() {
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/faq">FAQ</a></li>
-            <li><a href="/preorder">Pre‑order</a></li>
+            <li><a href="/order">Pre‑order</a></li>
           </ul>
         </div>
         <div>

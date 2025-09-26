@@ -63,7 +63,7 @@ The optimized build output goes to the `/dist` folder.
 ## 📂 Project Structure
 
 * **`/src/App.jsx`** → App entry point (navigation + routing)
-* **Pages:** Home, Preorder, About, FAQ, Contact, Thank You
+* **Pages:** Home, Order, About, FAQ, Contact, Thank You
 * **Components:** Countdown, NotifyForm, RotatingGallery, SiteNav, SiteFooter
 * **Styling:** Tailwind CSS with palette inspired by the book cover
 
@@ -78,7 +78,7 @@ Replace placeholders with high-res launch assets (book cover, author portraits, 
 
 ## 🔗 External Integrations
 
-* **Retailer links**: Amazon, Barnes & Noble, Apple Books, and Google Play Books. (edit in `PreorderPage`).
+* **Retailer links**: Amazon, Barnes & Noble, Apple Books, and Google Play Books. (edit in `OrderPage`).
 * **Jotform forms**: Power email signups and contact messages (IDs are hardcoded, swap if needed).
 * **Social links**: Configurable in `ThankYouPage` and `SiteFooter`.
 
@@ -89,4 +89,4 @@ Replace placeholders with high-res launch assets (book cover, author portraits, 
 * **Countdown date**: Update in `Hero` (`Countdown targetDate={new Date('2025-09-26T00:00:00-04:00')}`)
 * **Color theme**: Palette defined in `App.jsx` comments (edit Tailwind classes)
 * **Forms**: Replace Jotform IDs if you switch accounts
-* **Retailers**: Add/update pre-order buttons in `PreorderPage`
+* **Retailers**: Add/update pre-order buttons in `OrderPage`
