@@ -10,7 +10,7 @@ The site is **automatically deployed on Netlify** whenever changes are pushed to
 
 *  **Book overview**: themes, key ideas, and inside-the-book highlights
 *  **Countdown timer**: dynamically ticking down to launch day
-*  **Pre-order page**: retailer links + email signup form (via Jotform)
+*  **Order page**: retailer links + email signup form (via Jotform)
 *  **About page**: author bio + rotating image gallery
 *  **FAQ page**: frequently asked questions about the book and author
 *  **Contact page**: direct contact info + form
@@ -89,4 +89,4 @@ Replace placeholders with high-res launch assets (book cover, author portraits, 
 * **Countdown date**: Update in `Hero` (`Countdown targetDate={new Date('2025-09-26T00:00:00-04:00')}`)
 * **Color theme**: Palette defined in `App.jsx` comments (edit Tailwind classes)
 * **Forms**: Replace Jotform IDs if you switch accounts
-* **Retailers**: Add/update pre-order buttons in `OrderPage`
+* **Retailers**: Add/update order buttons in `OrderPage`
