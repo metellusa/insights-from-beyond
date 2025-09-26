@@ -191,7 +191,7 @@ function ValueProps() {
           To Anaja, NDEs aren’t hallucinations but spiritual breadcrumbs—God’s way of whispering to us through the veil. In an age where religion can feel divisive or shallow, this book offers something deeper. Whether you’re a believer, seeker, or curious skeptic, you’re invited to explore the mystery. You may find that God isn’t offended by your search. In fact, He may have been waiting for you to begin it.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
+          <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Order now</a>
           <a href="/about" className="px-5 py-3 rounded-xl border border-white/15">About the author</a>
         </div>
       </div>
@@ -280,10 +280,10 @@ function CTA() {
         <div className="p-8 md:p-10 rounded-3xl border border-white/10 bg-white/[.03] flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-2xl font-bold">Be among the first to read it</h3>
-            <p className="text-white/80 mt-1">Pre‑orders help the launch make a splash on release day.</p>
+            <p className="text-white/80 mt-1">Writing a review after you read it would mean a lot!</p>
           </div>
           <div className="flex gap-3">
-            <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Pre‑order now</a>
+            <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow">Order now</a>
             <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">Media & Speaking</a>
           </div>
         </div>
