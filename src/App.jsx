@@ -56,7 +56,7 @@ function SiteNav() {
           <div className="px-4 py-3 flex flex-col gap-3">
             <a className="hover:text-[#A8D0FF]" href="/about" onClick={() => setOpen(false)}>About</a>
             <a className="hover:text-[#A8D0FF]" href="/contact" onClick={() => setOpen(false)}>Contact</a>
-            <a className="px-4 py-2 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow" href="/order" onClick={() => setOpen(false)}>Pre‑order</a>
+            <a className="px-4 py-2 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold shadow" href="/order" onClick={() => setOpen(false)}>Order</a>
           </div>
         </div>
       )}
@@ -297,7 +297,7 @@ function OrderPage() {
     <main className="max-w-5xl mx-auto px-4 py-14">
       <h1 className="text-3xl font-bold">Order</h1>
       <p className="mt-3 text-white/90">
-        Reserve your copy ahead of the September 26 launch. Choose a retailer below, or leave your email and we’ll notify you the moment it goes live.
+        Choose a retailer below. We can't wait for your to start reading or listening to Insights from Beyond!
       </p>
 
       <div className="mt-8 grid md:grid-cols-2 gap-6">
@@ -312,6 +312,16 @@ function OrderPage() {
               className="w-full px-4 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold text-center hover:bg-[#36c7ff] transition"
             >
               Amazon
+            </a>
+
+            <a
+              href="https://www.audible.com/pd/B0G4SPFMSF/?source_code=AUDFPWS0223189MWT-BK-ACX0-483347&ref=acx_bty_BK_ACX0_483347_rh_us"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Listen to Insights from Beyond on Audible (opens in new tab)"
+              className="w-full px-4 py-3 rounded-xl bg-[#F8991D] text-[#0B1B2B] font-semibold text-center hover:bg-[#FFB347] transition"
+            >
+              Audible
             </a>
 
             <a
@@ -347,16 +357,17 @@ function OrderPage() {
         </div>
 
         <div className="p-6 rounded-2xl bg-white/[.03] border border-white/10">
-          <div className="font-semibold">Email me when it’s live</div>
+          <div className="font-semibold">Email me any updates</div>
           <NotifyForm />
           <p className="text-xs text-white/60 mt-3">
-            We’ll send a single launch-day email. No spam, ever!
+            We’ll only send necessary updates. No spam, ever!
           </p>
         </div>
       </div>
     </main>
   );
 }
+
 
 
 function NotifyForm() {
@@ -726,7 +737,7 @@ function FAQPage() {
 
       <div className="mt-10 flex gap-3">
         <a href="/order" className="px-5 py-3 rounded-xl bg-[#00B3FF] text-[#0B1B2B] font-semibold">
-          Pre‑order the book
+          Order the book
         </a>
         <a href="/contact" className="px-5 py-3 rounded-xl border border-white/15">
           Contact Anaja
@@ -777,14 +788,14 @@ function SiteFooter() {
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/faq">FAQ</a></li>
-            <li><a href="/order">Pre‑order</a></li>
+            <li><a href="/order">Order</a></li>
           </ul>
         </div>
         <div>
           <div className="font-semibold mb-2">Launch</div>
           <ul className="space-y-2 text-white/80 text-sm">
-            <li>Release: Sept 26</li>
-            <li>Formats: Hardcover · Paperback · eBook</li>
+            <li>Release: Sept 26 2025</li>
+            <li>Formats: Hardcover · Paperback · eBook · Audiobook</li>
           </ul>
         </div>
         <div>
